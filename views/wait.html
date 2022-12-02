@@ -88,21 +88,48 @@
 
         </div>
         <div class="col-3"></div>
+        <ul id="countdownbtn" type="none">
+          <li id="usercount"></li>
+      </ul>
+      </div>
+    </div>
+    <div id="result" class="d-none">
+      <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-6">
+          <ul id="messages_3" type="none">
+            <li id="user_1"></li>
+          <ul id="messages_4" type="none">
+            <li id="user_2"></li>
+        </ul>
+        <ul id="messages_5" type="none">
+          <li id="user_3"></li>
+      </ul>
+      <button value="reset" onclick="recheckvalue()">
+        reset
+      </button>
+
+        </div>
+        <div class="col-3"></div>
       </div>
     </div>
 </body>
 <script>
           let turn; 
-          const list_data=[];
+          const list_data=[]; //1호선w중복체크
           const socket = io();
-          const name=[];
+          const name=[]; //닉네임
+          var nickname;  //name 에푸쉬할려교
+          let turn_num =0;
+          const fieldset1 = document.getElementById('wait');
+          const fieldset2 = document.getElementById('index');
+          const fieldset3 = document.getElementById('result');
+          const fieldset_1 = document.getElementById('input_msg');
+          const fieldset_2 = document.getElementById('submit');
       function checkvalue() {
-        const fieldset1 = document.getElementById('wait');
-        const fieldset2 = document.getElementById('index');
-        
         if(a.id.value ==0) {
             alert("입력하세요"); 
-           
           } else {
            alert("입장");
            let data = a.id.value;
@@ -111,6 +138,13 @@
            fieldset1.className = "d-none";
            fieldset2.className = "container-fluid"
           }
+        }   
+        function recheckvalue() {
+           fieldset3.className = "d-none";
+           fieldset1.className = "container-fluid"
+           socket.emit("disconnect");
+           const msgclear = document.getElementById('msg');
+           msgclear=null;
         }   
         //들어올때
       socket.on("enter", (data) => {
@@ -137,17 +171,19 @@
       });
       socket.on("start_turn",(data)=>{
         console.log(data);
-          const fieldset_1 = document.getElementById('input_msg');
-          const fieldset_2 = document.getElementById('submit');
+        if(name.indexOf(data)>-1){
+          console.log(name.indexOf(data));
           fieldset_1.className = "form-control mb-3";
           fieldset_2.className = "btn btn-primary mb-3";
-        
-      })
-
-      socket.on("getID", (data) => {
-        var username = document.getElementById('username');
-            username.innerText = `내 아이디: ${data.id}`
-          console.log(data)
+        }
+      });
+      socket.on("turn",(data)=>{
+        console.log(data);
+        if(name.indexOf(data)>-1){
+          console.log(name.indexOf(data));
+          fieldset_1.className = "form-control mb-3";
+          fieldset_2.className = "btn btn-primary mb-3";
+        }
       });
       const word = [
       "탕정","신창","대방","회기","신길","봉명","녹천","쌍용","온양온천","노량진","영등포","외대앞","신이문","석계","광운대","월계","창동","신도림","용산","배방","구로","가산디지털단지","금천구청","석수","안양","명학","군포","성균관대","화서","수원","독산","세류","오산대","오산","진위","송탄","남영","금정","서정리","평택","성환","직산","광명","오류동","역곡","부천","송내","부평","동암","동인천","소사","간석","관악","주안","구일","부개","도원","온수","도화","아산","당정","방학","도봉","망월사","회룡","의정부","의왕","병점","두정","서동탄","제물포","양주","덕계","덕정","지행","동두천중앙","동두천","세마","평택지제","개봉","백운","도봉산","소요산","가능","녹양","보산","서울역","시청","종각","종로3가","종로5가","동대문","신설동","제기동","청량리","동묘앞",
@@ -155,10 +191,23 @@
       // 메시지 입력할때 
       socket.on("msg", (data) => {
         if (word.indexOf(data.message) > -1) { 
+          socket.emit("countdownbtn",data.id,data.message);
+          socket.on("countdown",(count) => {
+          let log = document.getElementById("countdownbtn");
+          let ptag = document.createElement("p");
+          let node = document.createTextNode(
+          `${count.number}초남음`
+        );
+        ptag.appendChild(node);
+        log.appendChild(ptag);
+          })
+        
         if (list_data.indexOf(data.message)>-1) { 
           alert(`중복단어입니다 따라서 ${data.id}님이 패배하셨습니다`); 
           socket.emit("score_list",data.id);
-          return; 
+          fieldset2.className = "d-none";
+          fieldset3.className = "container-fluid"
+          
           } 
        else{
         let log = document.getElementById("msg");
@@ -169,12 +218,29 @@
         ptag.appendChild(node);
         log.appendChild(ptag);
         list_data.push(data.message);
+        turn_num ++; //랜덤골라서 숫자 돌렸는데 이게 독립적이다보니까 처음랜덤 다음에 그게 다시나올수도있음
         console.log(data.id, "에서 보낸 메시지 : ", data.message);
+        fieldset_1.className = "form-control mb-3 disabled";
+        fieldset_2.className = "btn btn-primary mb-3 disabled";
+        socket.emit("next_turn",data.id,turn_num);
+        socket.emit("countdownstopbtn",(data.id,data.message));
        }}
        else
-       return;
-      });
+       {
+        alert(`틀렸습니다 따라서 ${data.id}님이 패배하셨습니다`); 
+          socket.emit("score_list",data.id);
+          fieldset2.className = "d-none";
+          fieldset3.className = "container-fluid"
 
+       }
+      });
+      socket.on("result",(data) => {
+      for(let i in data) {
+        var username = document.getElementById('message_3');
+            username.innerText = `내 아이디: ${data.nickname}`
+      }
+      });
+      
       const submit = () => {
         let data = document.getElementById("input_msg").value;
         socket.emit("input", data);

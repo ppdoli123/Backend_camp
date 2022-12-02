@@ -8,14 +8,15 @@ const socketHandler = (server) => {
     },
   });
   let user = {};
-  let count =0;
-  const name=[];
+  let count =0; //서버들어온순서 but 1번일때 새로고침하면 3번으로 고정됨
+  const name=[]; //닉네임 저장하는공간 disconnect되면 삭제됨
   io.on("connection", (socket) => {
     // 접속 시 서버에서 실행되는 코드
     count ++;
+    let isstop=false;
+    let counter =10;
     const socket_num =count;
- 
-    const userSocketIdMap = new Map();
+    let nickname_1;
     const req = socket.request;
     const socket_id = socket.id;
     const client_ip =
@@ -31,83 +32,67 @@ const socketHandler = (server) => {
       // 사전 정의 된 callback (disconnect, error)
       console.log(socket.id, " client disconnected");
       delete user[socket.id];
-      count --;
+      count -- ;
+      var i = name.indexOf(nickname_1);
+      name.splice(i,1);
     });
     socket.on("enter_list", (data) => {
       // 생성한 이벤트 이름 enter 호출 시 실행되는 callback
-      socket.emit("enter", { id: data, num: socket_num });
-      name.push(data);
-      user.nickname=data;
-    });
-    socket.on("user_name", (msg) => {
-      // 생성한 이벤트 이름 event1 호출 시 실행되는 callback
-      console.log(name);
-      socket.emit("getID", { id: msg, num: socket_num });
+      socket.emit("enter", { id: data, num: socket_num, socketid:socket_id });
+      nickname_1=data;
+      name.push(nickname_1);
+      user[socket.id].nickname=data;
     });
 
     socket.on("start",(data) => {
-      const turn = [
-        name[Math.ceil(Math.random() * name.length) - 1],
-      ];
-      console.log(name,turn);
-      let strturn= turn.join();
-      socket.emit("start_turn",strturn)
-      // io.sockets.socket().emit('message', '안녕');
-      // if(name_array[0]==data){
-      //   socket.emit("start_first",data)
-      //   console.log(data, "차례입니다.");
-      // }
-      // else{
-      //   console.log(data, "차례아닙니다");
-      // }
-
+      const num =  Math.floor(Math.random() * 3);
+      console.log(name,name[num]);
+      io.emit("start_turn",name[num])
     })
-    socket.on("join", (socketId) => { 
-      if (userSocketIdMap.size === 0) { 
-        userSocketIdMap.set(0, "user1"); 
-        turn = "user1"; 
-        io.emit("join", { 
-          username: userSocketIdMap.get(0), socketId }); 
-          //user1 
-      } else {
-          userSocketIdMap.set(1, "user2"); 
-          io.emit("join", { 
-              username: userSocketIdMap.get(1), socketId 
-          }); //user2 
-      } 
+    socket.on("next_turn",(id,num) =>{
+      io.emit("start_turn",name[num%3])
     });
-    
-    socket.on("message", (message) => { 
-        if (turn === "user1") { 
-          turn = "user2"; 
-            } else { 
-              turn = "user1"; 
-            } 
-        io.emit("message", { message, turn }); 
-        }); 
     // 모두에게
     socket.on("input", (data) => {
-      io.emit("msg", { id: name, message: data });
+      io.emit("msg", { id: nickname_1, message: data, socketid:socket.id });
       //console.log(socket.id, " 가 보낸 메시지 : ", data);
       console.log(user);
     });
     socket.on("score_list", (data) => {
-      socket.broadcast.emit("msg", { id: name, message: data });
+      io.emit("result", user);
       //console.log(socket.id, " 가 보낸 메시지 : ", data);
       console.log(user);
     });
-
-    // 본인 제외한 모든 소켓
-    socket.on("inputWM", (data) => {
-      socket.broadcast.emit("msg", { id: name, message: data });
-      //console.log(data, " 를 받았는데, 본인 빼고 broadcast 해야함");
+    socket.on("countdownbtn",(id,data) => {
+      isstop=false;
+      counter=10;
+      const cdb = setInterval(() =>{
+        if(!isstop){
+          if(counter==0){
+            console.log("턴종료!");
+            clearInterval(cdb);
+          }
+          else{
+            counter--;
+            
+            io.to(socket_id).emit("countdown",{number:`${counter}`});
+          }}
+          else{
+            clearInterval(cdb);
+          }
+        },1000);      
     });
-
-    // 특정 소켓
-    socket.on("private", (id, data) => {
-      io.to(id).emit("msg", { id: socket.id, message: data });
-      //console.log(socket.id, " 가 ", id, " 에게 보내는 메시지 : ", data);
+    socket.on("countdownstopbtn", (id,data) =>{
+      isstop=true;
     });
+    socket.on("score_list",(data)=> {
+      for(let i in user) {
+        user[i].point +=1;
+      }
+      if(user[socket.id].nickname==data){
+        user[socket.id].point--;
+      }
+    })
   });
 };
 module.exports = socketHandler;
