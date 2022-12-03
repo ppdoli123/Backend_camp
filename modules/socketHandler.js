@@ -7,14 +7,15 @@ const socketHandler = (server) => {
       methods: ["GET", "POST"],
     },
   });
+  let isstop=false;
+  let counter =10;
+  let turn=0;
   let user = {};
   let count =0; //서버들어온순서 but 1번일때 새로고침하면 3번으로 고정됨
   const name=[]; //닉네임 저장하는공간 disconnect되면 삭제됨
   io.on("connection", (socket) => {
     // 접속 시 서버에서 실행되는 코드
     count ++;
-    let isstop=false;
-    let counter =10;
     const socket_num =count;
     let nickname_1;
     const req = socket.request;
@@ -40,28 +41,27 @@ const socketHandler = (server) => {
       // 생성한 이벤트 이름 enter 호출 시 실행되는 callback
       socket.emit("enter", { id: data, num: socket_num, socketid:socket_id });
       nickname_1=data;
+      if(name.indexOf(nickname_1)<0){
       name.push(nickname_1);
       user[socket.id].nickname=data;
+      }
     });
 
     socket.on("start",(data) => {
       const num =  Math.floor(Math.random() * 3);
       console.log(name,name[num]);
-      io.emit("start_turn",name[num])
+      turn= num;
+      io.emit("start_turn",name[num]);
     })
     socket.on("next_turn",(id,num) =>{
-      io.emit("start_turn",name[num%3])
+      console.log(turn);
+      io.emit("start_turn",name[turn%3])
     });
     // 모두에게
     socket.on("input", (data) => {
       io.emit("msg", { id: nickname_1, message: data, socketid:socket.id });
       //console.log(socket.id, " 가 보낸 메시지 : ", data);
-      console.log(user);
-    });
-    socket.on("score_list", (data) => {
-      io.emit("result", user);
-      //console.log(socket.id, " 가 보낸 메시지 : ", data);
-      console.log(user);
+      turn ++;
     });
     socket.on("countdownbtn",(id,data) => {
       isstop=false;
@@ -86,12 +86,16 @@ const socketHandler = (server) => {
       isstop=true;
     });
     socket.on("score_list",(data)=> {
-      for(let i in user) {
-        user[i].point +=1;
-      }
-      if(user[socket.id].nickname==data){
-        user[socket.id].point--;
-      }
+        if(user[socket.id].nickname==data){
+        for(let i in user) {
+          user[i].point +=1;
+          if(user[i].nickname==data){
+            user[i].point --;
+          }
+        }
+        console.log(user);
+      io.emit("result",user);
+        }
     })
   });
 };
