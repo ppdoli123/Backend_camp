@@ -34,18 +34,23 @@ const socketHandler = (server) => {
       console.log(socket.id, " client disconnected");
       delete user[socket.id];
       count -- ;
+      socket.broadcast.emit("error",nickname_1);
       var i = name.indexOf(nickname_1);
       name.splice(i,1);
+   
     });
     socket.on("enter_list", (data) => {
       // 생성한 이벤트 이름 enter 호출 시 실행되는 callback
-      socket.emit("enter", { id: data, num: socket_num, socketid:socket_id });
       nickname_1=data;
       if(name.indexOf(nickname_1)<0){
       name.push(nickname_1);
       user[socket.id].nickname=data;
+      socket.emit("enter", { id: data, num: name.length, socketid:socket_id });
       }
     });
+    socket.on("member",(data) =>{
+      io.emit("member_list",data)
+    });;
 
     socket.on("start",(data) => {
       const num =  Math.floor(Math.random() * 3);
@@ -57,6 +62,12 @@ const socketHandler = (server) => {
       console.log(turn);
       io.emit("start_turn",name[turn%3])
     });
+    socket.on("turn_ser",(data)=>{
+      socket.emit("turn",data);
+    });
+    socket.on("alarm",(data)=>{
+      io.emit("alarm_start");
+    })
     // 모두에게
     socket.on("input", (data) => {
       io.emit("msg", { id: nickname_1, message: data, socketid:socket.id });
@@ -86,16 +97,18 @@ const socketHandler = (server) => {
       isstop=true;
     });
     socket.on("score_list",(data)=> {
+      
         if(user[socket.id].nickname==data){
         for(let i in user) {
           user[i].point +=1;
           if(user[i].nickname==data){
             user[i].point --;
+            console.log(user);
+            io.emit("result",user);
+          
           }
-        }
-        console.log(user);
-      io.emit("result",user);
-        }
+        }}
+
     })
   });
 };
