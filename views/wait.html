@@ -277,6 +277,7 @@
         list_data.push(data.message);
         turn_num ++; //랜덤골라서 숫자 돌렸는데 이게 독립적이다보니까 처음랜덤 다음에 그게 다시나올수도있음
         console.log(data.id, "에서 보낸 메시지 : ", data.message);
+        fieldset_1.value("");
         fieldset_1.className = "form-control mb-3 disabled";
         fieldset_2.className = "btn btn-primary mb-3 disabled";
         document.getElementById("img").style.display="none"; 
