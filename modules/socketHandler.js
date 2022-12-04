@@ -27,8 +27,8 @@ const socketHandler = (server) => {
     console.log("socket ID : ", socket_id);
     console.log("client IP : ", client_ip);
     console.log("몇번째? : ", socket_num);
-
     user[socket.id] = { nickname: "users nickname", point: 0 };
+    
 
     socket.on("disconnect", () => {
       // 사전 정의 된 callback (disconnect, error)
@@ -36,26 +36,50 @@ const socketHandler = (server) => {
       delete user[socket.id];
       count -- ;
       io.emit("error",nickname_1);
+      if(name.indexOf(nickname_1)>-1){
       var i = name.indexOf(nickname_1);
       name.splice(i,1);
+      }
+      console.log(user);
    
     });
     socket.on("enter_list", (data) => {
       // 생성한 이벤트 이름 enter 호출 시 실행되는 callback
       nickname_1=data;
       if(name.indexOf(nickname_1)<0){
+        if(name.length<3){
       name.push(nickname_1);
       user[socket.id].nickname=data;
-      socket.emit("enter", { id: data, num: name.length, socketid:socket_id });
+      console.log(name.length);
+      socket.emit("enter", { id: data, num: name.length, num_2:socket_num });
       }
-    });
-    socket.on("member",(data) =>{
-      io.emit("member_list",data)
-    });;
+      else{
+        io.emit("delete",data );
+        console.log(data);
+      }
+    }
 
+      
+    });
+
+    socket.on("re_enter", (data) => {
+      re_num= re_num + 1;
+      socket.emit("enter_re", {id:data, num:re_num, num_2:user.length});
+    });
+
+    socket.on("member",(data) =>{
+      io.emit("member_list",data);
+    });;
+    socket.on("exit", (data) => {
+      io.emit("exit_btn",data);
+    })
+    socket.on("wait_name", (data)=>{
+      io.emit("wait", data);
+    })
     socket.on("start",(data) => {
       const num =  Math.floor(Math.random() * 3);
       console.log(name,name[num]);
+      console.log(user);
       turn= num;
       io.emit("start_turn",name[num]);
     })
@@ -99,27 +123,27 @@ const socketHandler = (server) => {
     });
     socket.on("score_exit", (data) => {
       user[socket.id].point +=1;
-      io.emit("result_exit",user);
+      io.emit("result",user);
     })
     socket.on("score_list",(data)=> {
       
         if(user[socket.id].nickname==data){
         for(let i in user) {
+          if(user[i].nickname == "users nickname"){
+          }
+          else{
           user[i].point +=1;
           if(user[i].nickname==data){
             user[i].point --;
             console.log(user);
             
           }
-        }
+        }}
         io.emit("result",user);
+        re_num=0;
       }
     });
     
-    socket.on("re_enter", (data) => {
-      re_num++;
-      socket.emit("enter_re", {id:data, num:re_num, num_2:name.length});
-    });
   });
 };
 module.exports = socketHandler;
