@@ -42,6 +42,8 @@
         <div class="row">
           <div class="col-3"></div>
           <div class="col-6">
+            <div id="chatHeader">즐거운 1호선 게임</div>
+            <div class=anoterMsg>1호선에 해당하는 역을 순서에 맞게 입력하시면 됩니다</div>
             <form name ="a" action="#">
               <input
                 type="text"
@@ -65,44 +67,50 @@
 
     <div id="index" class="d-none">
       <div id="img" style="display:none" >
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUWFRgWFhUYGBgZGBgcGRwaGhgaHBoZHhocGhofHBocIy4lIx4rIRgZJzgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHxISHjYrJCs0NDQ2NjQ3NDQ0PTQ0MTQ1MTQ0NDQ2NDQ0NDQ0NjQ0NDQ0NjQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAMEBBQMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABQECBAYHAwj/xABCEAACAQIDBQUEBgkDBAMAAAABAgADEQQSIQUGMUFRImFxgaEHEzKRFHKCscHwI0JSYpKistHhM1PSNEPC8RckRP/EABkBAQADAQEAAAAAAAAAAAAAAAABAwQCBf/EACQRAAMAAgAGAwEBAQAAAAAAAAABAgMREhQhMUFRBBNhMiJC/9oADAMBAAIRAxEAPwDs0REAREQBERAEREAREQBERAEREAREQBERAEREAREQBEpEAoTNB2/vMzOVouVQaZhcMx5m/EL0tb1k/vjtA0qBA+Kp2B3A/Eflp5zmeJfKt+ZvMufI0+FGjDjTXEyRobUdWutZw31zr4gnXzm57u7ye9Ip1bBz8LDQN3Ecm9D3cJyfDVr6HjyPX/MmMNWzDXiOf3GUTkcMtrHNI7PNW3r3gNH9HTNnIuW0JW/AAHS5te54Dx01zZ28WIQACoXtpZ+16/F6yL2ji2qVSz8Scx6XPC3cAAB4S6s6qf8APcrjBqv9Egm1a4Ic1agP1mI/hOnlabnu5tr34KtYOovpwZeGYDkb6HxHWw5wMSOvpJbdSuRiqRB0JZT4FW/Gx8pxjtqkd5ITk6hERNxjEREAREQBERAEREAREQBERAEREAREQCkTyr1lRSzMFUcSSAB5maxtHe8DSguY/tNcL5LoT6Tirme7Opiq7I2y8wsdtKlRF6jgdBxJ8FGpnPMVtivU+Kq9uinIPktvWYBmevk+kXz8f2zcsXvmo0p0y3exC/IC9/mJEYze7Ekdkqv1Vuf5iZB3PdPNtZRWe35LlhleDJr7cxT8a1T7LFP6LTHbFVm+Ko5+tUdvvMsY90sD9ZW7p+TtQl4PEuxa176zIqIGFjLE0N5VVvreRsnRGHAZW0DaHppJdUAvYceMqJWHTYS0KYAPjKYtNL9Pulyi89ANNZKDI5hJndFb4qkP3ifIIx/CR1ejLcJiGoutRTZkNx39Qe4i4PjO4emmcUtpo7VExcHiFqorqTlZQR58j4RPS2eeZUREkCIiAIiIAiIgCIiAIiIBSIkZtfbFPDrdjdiOyo+Jv7DvMiqUrbJSbekZ9aqqgszBQNSSQAB3kzVdq73qLrQGY8MxBCjwHFvQeM1na216mIa7Gyj4VHwr/c959OEj5iyfJb6SaowJdaMzF4ypVa9Ryx5X4DwA0HkJjl55xMzps0JaLi5lpMRIJEREgFDPIGe08AJIL0ObQy4LreedBtSJeWgHpEoplYBDYjb6K4RQW7QBYGwAvqR19JNUqt5rtPdgBwxqEoGBy5e0db2LX9bfKTbrY3HCW1w9FJWuLuzJq8JFPtOn7wUibkm3gekkw118JA0t3v0wfPdA2a36+YG4Xpa/PppbnE68it+DsW5ikYVQeAL28Mx/G8Sm59cNhwo4ozA+ZLD0MT0Mf8oxX/TNgiInZwIiIAiIgCIiAIiIBSIkJvFtkYdNLGo1wg6dWPcPU2HeOapStslJt6R4by7fFEZEsarDxCjqe/oPPx0CtVZmLMxZjqSTcmKlRmYsxLMxuSeJPfLJ5uXK7f4b8eNShERKiwREQBERAEREASwLrL4gGO4swPnPQxUAPGUBkgqDLw08yZQPAPeWP+e+EMo9PmJKIZC4jbSqbKw+Y1mdszaSve+hE0naNApVdDyY2+qTdfQiZewcQRUC2JDAjw538NJqeOeHoZ1dcXU65upWa9XK1v8ATvpe/wAdokvuBhMtA1DxqNp9VbgeuaJZEPhRVdriZtkRE0lIiIgCIiAIiIAiIgHhia6ojOxsqgknuGs5VtLHNXqNUbieA/ZUfCo8PvJPObZv1tCwWgp1btN9UHsjzYE/YmlTB8m9vhXg14I0uJ+RERMppEREAREQBEpeVvAEpmF7c5iYvEEGynx/tL8MeJPPnJBkxEtZgJAPNzrMJ2IYnvmW7XM8a6i1z5QiSj4lSLNpMFqrqdGP3/fLayc5GY7DXBcGxA+7pLZlMrp6NgwuNPAjzmT76/dNBTEuDcM1+7ieVp0yl7KcS1MFsaFZlBZCjMFYjVc2fWx0vbXpLlgbKnmSNY2zXoOMjMC1wMygMU11uenUSV3c3fFSotOkLFtGfjZBqzE8PuuSBNv2Z7PnVAlSrTJHErT46nlcAaWm3bF2JSwy5aYNzYEniQOA6Adwlk4n2fYrrJPddzPwtBUVUUWVQAB0A0ET2iajOIiIAiIgCIiAIiIBSUJlZF7er5aFSzKt1y5mNgC3Z49dZFPS2Slt6OdbWxvvqz1OTN2fqDRfQA+JMxJl/QhmRVqo5ZgvZJOW/AnThPBqIGe7rdGy5b9ptbEqOk8qlTe2eimktI84lMw6iCwnB0ViUvKFxYm/CSCjvaUFS/Dj0/tPbE4VkrClmF2KC+tu3bl5yibPd6r0xl7BbO2oRQt9SeQ0/OsnhZHEjCLWllSoy6jz/CWVmFz2gRc2PAHv11+c8mf5SNE7LSZk0uXlMUMJd9LS/M690lkbJiY+J5T1p1VPAyzEjkJDXQnZju88aj38pa6kcZGV8e6fFTt3g3HztJmW+xDrXcy67cpG7RxACleZHy/zMSttViOyLd/GR7uTqTeaIxtdyirXg2v2abEbEY5Gy3p0CKlQnhcX92PEsAbdEafQk+fd2NrYvAktSylXyl6bC4a3U6EMASLg+RnZd1946WNpZ07LLpUpse1Tbv6qbGzc+4gga4qX0RnuWurJ6IiWFYiIgCIiAIiIAiIgCIiAUmo79k+5QcvfXb+BgL93aHnabdNU32xNSn7pkNr5w2gIPw2uD5yrN/DLMX9I1HZTD3qa/rp/UJk4lB7rFHn74eX6SeP092yklbo2ZbKo1HhxmNVxDkOtxZ2zNoNWvfy1mDiSWjZpt7JXEV3FZEVVZCKYKmmpBBAzXNr9ec8FQo1UpURKa1Ml2QVCW1IUDKToDPLF7Sdj2HdUyqLXy6gWPA9Zj4bFOgKqRlNiVKqwuOdiOMl0tkKXolSFY4Z7q7GoVLqmQMAeakDha3DrMLHY9u2thmSs5RsqdlVLLltl1855vj3OTVRkbMtlUAHwAmM7FixPFixPixJPqZDv0Sp9kvtOqTiaaEjKHosBZb3uOdr8zpe0rjkzpWSloy1WaqOLOuY6g9OGn7pHPWOfHO2TMwJQqVJVc3Z4XNrkS1MW6uagazkkk2Gt+OnC0njXX9HCytNPd4c1aYGdqmTMQGyLlzdm9xc/j4TIwKh3wtRlUO5rB7AAPlDAMRwv398x6GLdC2UgBzdlygofsnQeUx8djKudawbtpougygEW0XhzhUloOWeeHxS4h6FOooLB2LNZVzLlLBCFA0uBLdp4wEVEGJpHUqKSUcp0a2UMV0I635SEBK2KkgqQQRoQRqLd89sXtms6sjlDmFifdoG8cwF7987mtrqcUuvQ2rB4h0qrSq4ikWuitTFIHVgCFzhALkMOPUSL2gmWo4XgHcDuAYgCRZ3hxGjEozC3aamhbTgc1uMqm2lclnYAsSWNrak3J05SbSpES+F9TLDcjD4dSLW0PmPWeP01G+Bla3GxB8JemI6j5TO5aL1SZG19gITcXHgR+I/GRuJ2JVp9pLPbXs/EPsnj5Xm0CqJczgc++dxlpdzmscsgsFVzorHU218RpJvdg1FxdF6TFWLqrW4OjMMysOa2ue6wPKRVLtNVIH6407ze/wBwnRPZ3sBlP0mouUEEUgeJB0L25C1wOoYnhYm6E6roU20p6nQ4iJuMgiIgCIiAIiIAiIgCIiAUmr7+Ur0EYfq1BfwKsPvyzaJH7cwfvaFROZW6/WXtL6gTjIty0dQ9UmcvpcJa/EytNtJYzc55b7HolrNwl08by/Nr4zk6L4lLysECIlC0AGUWzAgyx+MoDCfUnRHY7ClTflIyoJtDoHUj8gzXsTSIJEtlldIgcXUIJUHT/wBzxoo7sqIGd2ICILszMeQHMz22mlu1ysb+Wv58J9Cbp7s0MHRRUpqKuRfePYF2e3aux1te9hwE2RPEjLdaZqO6fswRKZbGEmq4FlR2UUxxsWU9pjz4qLaX4mQxXs2SxNPFV1PIOKbjwFlU/Mzf4lriX3RUrpdmcCpMQB4a3laj31JAsPAATbN69xcT71quDZXVyWak5AKuTc5GIsVN+BYW7xoIrZPs5xtdx9LZaNK92VWVnbuULdR4km3SZOXezT960S3s83YpV6BxNYMfeVXZF+FSqkKCw4m5Q9BblOnATxwmGSmi00UKiKFVRwCgWAE95smVK6GaqddysRE6ORERAEREAREQBERAEREASkrEA5pvHs40a7WHZcll6am7L5E/IiRGUTou9eED4djzTtj7I7X8t/Sc8nnZ44aN2GuKTFdbS2ZTpeYzraZ2tF6ZUn898uOonnLlaQC4NpLWa8tiAVJlJciyjmAFa0wNogEX5zOJkfi2006WncnNGDs7CZ8RhkOubE0QR1XOC38oafRM4puBgjVx9I2utFXqt0vlNNB43cn7J6Ttc9HCv8mHL/RWIiXFQiIgCIiAIiIAiIgFInjiK6opZ2CqOJJsBILEb5YVeBZvqqf/ACtOXUruyVNPsjY4ml19/UHwUHb6zKn3ZpG4vfjEN8Cog83b5mw/llTzwvJYsNvwdGiclq7yYtuNdvshV/pAngds4j/fq/xv/ecc1PpnfL17OwxOQrt3FD/v1P4r/fLX21iW416vkzL/AEkRzU+hy9ezsF5G4zbeHpGz1VB5gXYjxC3I85yxsZVb46rkd9Rj95M8g6jS4E5fyX4R0vj+2bttbetXUpSW4YFSzdCLGyjuPE/KalUcAXMx3qZRf5TBrVydSbmUVdW+pdETC6Elh6+a+liPul9W1pDJi8puJk08RmN7jX0lbTO0z3iInB2IlQJUpBBS8pLBUF7StVrKfCNDZ5VaoKm3cPz8pF4zEBQWPAes9cRiFQEkgAcSeAm37j7ms7Li8UhVVOajRYak8Q9QHh1CnuJ4TTixOmUZMilGwezfYLYfDmpUXLWrkO4PFEA/RoelgSSORYjlNyiJ6CWlpGJvb2ViIkkCIiAIiIAiIgCIiAc73w2gXrFA90Swyjhn1zX6kcO7XvmoVaoGp/zJDaIKO63uVdlv1sxBPnMjdjdw4pyzf6SsMx4FrWORbdx1PK/Wec1V2b9qIIShVZzlSm7nogLH5KDJld2Mey5hhwOillDkdbFgB4Eg906nhMGlJQlNFRR+qoAHpzmTNC+NPkzvPXg4xW2HjlGuHf7Kh/6SZF13qobOrIejoUPyIE73POpSVhZlDDoQCPkYfxp8MLO/KOBtjT+0o+X4zzOI/f8AWd+TDqBYKoHQACPoyfsL8hOeW/Sfv/DgH0j9/wDm/wAy5nPM/Mzv7UlIsVBB4iwt8ph4bY2GQlkoUkY8SqID8wJPLv2Pv/DieGwrv8CO/wBRWb+kSQO7eOyhlwtRr99NT5hmB9J2sCVnS+OvLOXnfhHA8VsjFpcvg64HMqhcDzS4kYcYqnXMp7xb8Z9Hzmftc2hhUpigaKPiqgBVsozUlzatmGt2ylQt7GxvcCxVglLeyZzNvWjSE2uLAL22PAc/PukxQVrXbj06SN2DsfIPeP8AGRoP2R+J4fnWTDGYbUp6RrlvXUtdwOMxalQt3D88ZiYvFEEgX0421J8JE19pfuuT+9pb1M6mNnLrRMPiFHDU+kxqJqVXFKijVKjcES2nUsx0VeFySBwlmxcNRrN/9nE1KScwlNzcdAwBA8SD4c507d7a2ysMvu8Ndb/E2SoXc9WZhmPPuHK0ujHP/TKruvCG6e4iUMtbE5a2IFiBxp0jx/RqeLcO2ddNLa33ia9V3ywSjWr5ZHv8rSOr+0TCL8K1n+qij+phNSqEtJozuab6o3KJoo9pdD/Yq/yf8pM7D3xwmKOSnUs/7D2VvLUg+RkrJL7MhxS7o2KIidnIiIgCIiAIiIAiIgHL95tmNTxDEg5XZmU9bnMw8QW+6bDuftJFprQaysCcp5Ndifnr56TZMbg0qqVcXHqD1B5Ga1T3VdaqkOuQMDfXPYG9rWtfTjfvtymb63FbnsaONVHDRuERE0mcREQBERAEREAREQCk4jvDVNXaeIqOoIpOtNAeQRRr465vtTt01LeXcxcVU94tZqLkDPlVGD2FgTfUNawvfgBK8sulpHeOlNbZpeYEXvoZ4s68Mw+Ymzf/ABktv+tr356U7eQy39ZkYf2Z4Yf6lbEVe4uFXyCAH1mXlX7NPMSaech07J+Rlr4dOafIEeom/r7O9mj/ALDHxr4j/nKt7PNmnjQY+NfEn76k65V+yOYXo5wMPR/JaXLRoj8vOmLuNs4f/kpnxzE/Mm88qvs/2cTcUCp6pVrJ6KwEcs/ZH3r0c8bC0zqFB8yfxnjVwKW0FvMzo2J9n+DcaCqh5MlVwR5ElT5gyHr+zVh/pY1vCrTSp/MhQznl79k/fJoNemAtwOHr85jpTR1z5ijob5vhZGGt793jNm2zujj8OpYJTrqOPui+YC2pNNhcj6pY90i9w6KYrGGlUoq9N6biot2GTLqrXUgghiF+33Qsdb0w7nW0dI3B3r+mUylQr9IpaPltaovBaijodAbcD0BE3CaDu/7PRhMaMQlcmmoYKhXtdpSuVnBsVF78BwHS836bJ3rqZa1voViInRAiIgCIiAIiIBSJWIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiJAEREkFJC4H/q631V/CIkeSSbiIkkCIiAIiIAiIgCIiAf/2Q==">
-      
-      </div>
-      <div id="chatLog">
-        <div id="chatHeader">즐겁지 않은 1호선 게임</div>
-        <div class=anoterMsg>
-          <ul id="messages_1" type="none">
-            <li id="username"></li>
-          <ul id="messages" type="none">
-            <li id="usercount"></li>
-        </ul>    
-          <form id="chatForm" action="#">
-            <input
-              type="text"
-              class="form-control mb-3 disabled"
-              id="input_msg"
-              placeholder="역입력하기"
-              autocomplete="off"
-            />
-          </form>
-          <button id="submit" class="btn btn-primary mb-3 disabled" onclick="submit()">
-            submit
-            </button>
-            <div id="msg"></div>
-        </div>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRul4PtUjrtAfjGp4nN4JzMEzQuOed_SuJtZg&usqp=CAU"> 
         <ul id="countdownbtn" type="none">
           <li id="usercount123"></li>
       </ul>
-    </div>
+      </div>
+      <div id="chatWrap">
+          <div id="chatHeader">즐겁지 않은 1호선 게임</div>
+          <div id="chatLog">
+            <ul id="messages_1" type="none">
+              <li id="username"></li>
+            <ul id="messages" type="none">
+              <li id="usercount"></li>
+          </ul>  
+          <div id=anoterMsg>
+              
+            <div id="msg"></div>
+        </div>
+      </div>
+          <div id="chatForm">  
+            <form action="#">
+              <input
+                type="text"
+                class="form-control mb-3 disabled"
+                id="message"
+                placeholder="역입력하기"
+                autocomplete="off"
+              />
+            </form>
+            <button id="submit" class="btn btn-primary mb-3 disabled" onclick="submit()">
+              submit
+              </button>
+            </div>
+      
+  </div>
       <div id="memberWrap">
         <div id="memberList">
             <div id="memberHeader">접속중인사람</div>
             <div id="memberSelect">
             </div>
         </div>
-    </div>
-      
-    </div>
+    </div>  
+  </div>
+
+
     <div id="result" class="d-none">
       <div class="row">
         <div class="col-3">
@@ -140,7 +148,7 @@
           const fieldset1 = document.getElementById('wait');
           const fieldset2 = document.getElementById('index');
           const fieldset3 = document.getElementById('result');
-          const fieldset_1 = document.getElementById('input_msg');
+          const fieldset_1 = document.getElementById('message');
           const fieldset_2 = document.getElementById('submit');
       function checkvalue() {
         if(a.id.value ==0) {
@@ -155,21 +163,31 @@
           }
         }   
         function recheckvalue() {
+           socket.emit("re_enter",name[0]);
            fieldset3.className = "d-none";
            fieldset2.className = "container-fluid"
+           fieldset_1.value="";
            const result_1 = document.getElementById('user_1');
            result_1.innerText='';
            const msgclear = document.getElementById('msg');
            msgclear.innerText='';
            let mem = document.getElementById("memberSelect");
           mem.innerText ='';
-           socket.emit("re_enter",name[0]);
-           
+          document.getElementById("img").style.display="none"; 
+          list_data.length=0;
         }   
+        socket.on("enter_re" , (data) => {
+          console.log(data.num);
+          console.log(data.num_2)
+          if(data.num%3==0){
+            socket.emit("member",data.id);
+            socket.emit("alarm",data);
+            socket.emit("start",data.id);
+          }
+
+        })
         //들어올때
       socket.on("enter", (data) => {
-        console.log(data.num);
-        console.log(name[0]);
         socket.emit("member",data.id);
         if (data.num < 3){
           
@@ -208,7 +226,7 @@
       socket.on("start_turn",(data)=>{
         
         socket.on("error",(exit) => {
-            alert(`한명이 나갔습니다. 따라서 ${exit}님이 패배하셨습니다`); 
+            alert(`${exit}님이 나가셨습니다.`); 
         fieldset2.className = "d-none";
         fieldset3.className = "container-fluid"
         console.log(data);
@@ -244,6 +262,7 @@
           alert(`중복단어입니다 따라서 ${data.id}님이 패배하셨습니다`); 
           fieldset2.className = "d-none";
           fieldset3.className = "container-fluid"
+          socket.emit("countdownstopbtn",(data.id));
           socket.emit("score_list",data.id);
           } 
        else{
@@ -266,9 +285,10 @@
        }}
        else
        {
-        alert(`틀렸습니다 따라서 ${data.id}님이 패배하셨습니다`); 
+        alert(`${data.id}님이 틀렸습니다.`); 
         fieldset2.className = "d-none";
         fieldset3.className = "container-fluid"
+        socket.emit("countdownstopbtn",(data.id));
         socket.emit("score_list",data.id);
 
        }
@@ -299,7 +319,7 @@
       })
       
       const submit = () => {
-        let data = document.getElementById("input_msg").value;
+        let data = document.getElementById("message").value;
         socket.emit("input", data);
       };
 </script>

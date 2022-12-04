@@ -7,6 +7,7 @@ const socketHandler = (server) => {
       methods: ["GET", "POST"],
     },
   });
+  let re_num=0;
   let turn=0;
   let counter = 10;
   let user = {};
@@ -114,8 +115,10 @@ const socketHandler = (server) => {
         io.emit("result",user);
       }
     });
+    
     socket.on("re_enter", (data) => {
-      socket.emit("enter", {id:data, num:name.length});
+      re_num++;
+      socket.emit("enter_re", {id:data, num:re_num, num_2:name.length});
     });
   });
 };
