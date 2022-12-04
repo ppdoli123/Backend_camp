@@ -7,9 +7,8 @@ const socketHandler = (server) => {
       methods: ["GET", "POST"],
     },
   });
-  let isstop=false;
-  let counter =10;
   let turn=0;
+  let counter = 10;
   let user = {};
   let count =0; //서버들어온순서 but 1번일때 새로고침하면 3번으로 고정됨
   const name=[]; //닉네임 저장하는공간 disconnect되면 삭제됨
@@ -17,6 +16,7 @@ const socketHandler = (server) => {
     // 접속 시 서버에서 실행되는 코드
     count ++;
     const socket_num =count;
+    let isStop = false;
     let nickname_1;
     const req = socket.request;
     const socket_id = socket.id;
@@ -34,7 +34,7 @@ const socketHandler = (server) => {
       console.log(socket.id, " client disconnected");
       delete user[socket.id];
       count -- ;
-      socket.broadcast.emit("error",nickname_1);
+      io.emit("error",nickname_1);
       var i = name.indexOf(nickname_1);
       name.splice(i,1);
    
@@ -60,7 +60,7 @@ const socketHandler = (server) => {
     })
     socket.on("next_turn",(id,num) =>{
       console.log(turn);
-      io.emit("start_turn",name[turn%3])
+      socket.emit("start_turn",name[turn%3])
     });
     socket.on("turn_ser",(data)=>{
       socket.emit("turn",data);
@@ -74,28 +74,32 @@ const socketHandler = (server) => {
       //console.log(socket.id, " 가 보낸 메시지 : ", data);
       turn ++;
     });
-    socket.on("countdownbtn",(id,data) => {
-      isstop=false;
+    socket.on("countdownbtn",(data) => {
+      isStop=false;
       counter=10;
       const cdb = setInterval(() =>{
-        if(!isstop){
+        if(!isStop){
           if(counter==0){
             console.log("턴종료!");
+            io.emit("count_exit",data);
             clearInterval(cdb);
           }
           else{
-            counter--;
-            
-            io.to(socket_id).emit("countdown",{number:`${counter}`});
+            counter--;            
+            socket.emit("countdown",{number:`${counter}`});
           }}
           else{
             clearInterval(cdb);
           }
         },1000);      
     });
-    socket.on("countdownstopbtn", (id,data) =>{
-      isstop=true;
+    socket.on("countdownstopbtn", (data) =>{
+      isStop=true;
     });
+    socket.on("score_exit", (data) => {
+      user[socket.id].point +=1;
+      io.emit("result_exit",user);
+    })
     socket.on("score_list",(data)=> {
       
         if(user[socket.id].nickname==data){
@@ -104,12 +108,15 @@ const socketHandler = (server) => {
           if(user[i].nickname==data){
             user[i].point --;
             console.log(user);
-            io.emit("result",user);
-          
+            
           }
-        }}
-
-    })
+        }
+        io.emit("result",user);
+      }
+    });
+    socket.on("re_enter", (data) => {
+      socket.emit("enter", {id:data, num:name.length});
+    });
   });
 };
 module.exports = socketHandler;
