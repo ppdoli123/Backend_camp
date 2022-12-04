@@ -7,14 +7,13 @@ a {
   color: #00B7FF;
 }
 #index{
-  width: 1280px;
+  width: 100%;
   margin: 0 auto;
   padding-top: 20px;
-  display: flex;
   justify-content: space-around;
 }
 #chatWrap {
-  width: 600px;
+  width: 100%;
   border: 1px solid #ddd;
 }
 
@@ -28,7 +27,7 @@ a {
 }
 
 #chatLog {
-  height: 700px;
+  height: 100%;
   overflow-y: auto;
   padding: 10px;
 }
