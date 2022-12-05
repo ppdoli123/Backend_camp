@@ -68,7 +68,7 @@ const socketHandler = (server) => {
     });
 
     socket.on("member",(data) =>{
-      io.emit("member_list",data);
+      io.emit("member_list",{id:data,point:user[socket.id].point});
     });;
     socket.on("exit", (data) => {
       io.emit("exit_btn",data);
@@ -99,6 +99,7 @@ const socketHandler = (server) => {
       //console.log(socket.id, " 가 보낸 메시지 : ", data);
       turn ++;
     });
+    
     socket.on("countdownbtn",(data) => {
       isStop=false;
       counter=10;

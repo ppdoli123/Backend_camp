@@ -80,6 +80,7 @@
           
           <div id="chatLog">
               <div id="username"></div>
+              <div id="username_2"></div>
               <div id="img" style="display:none" >
                 당신 차례입니다.
                 <ul id="countdownbtn" type="none">
@@ -92,7 +93,7 @@
         </div>
       </div>
           <div id="chatForm">  
-            <form action="#">
+            <form name="b" action="#">
               <input
                 type="text"
                 class="form-control mb-3 disabled"
@@ -128,7 +129,7 @@
       <button value="reset" onclick="recheckvalue()">
         계속하기
       </button>
-      <a href="/"><button value="exit" onclick="ex()">
+      <a href="https://www.kw.ac.kr/ko/"><button value="exit" onclick="ex()">
         종료하기
       </button></a>
         </div>
@@ -137,47 +138,47 @@
     </div>
 </body>
 <script>
-          let html = "";  
-          let turn =0;
-          const list_data=[]; //1호선w중복체크
-          const socket = io();
-          const name=[]; //닉네임
-          var nickname;  //name 에푸쉬할려교
-          let turn_num =0;
-          let reset_1= 0; //3명계속하기 할려고
-          const score_name = [];
-          const score_point= [];
-          const del =[];
-          let exit_name;
-          const exit_btn=[];
-          const myid = document.getElementById('myid');
-          const ready = document.getElementById('ready');
-          const fieldset1 = document.getElementById('wait');
-          const fieldset2 = document.getElementById('index');
-          const fieldset3 = document.getElementById('result');
-          const fieldset_1 = document.getElementById('message');
-          const fieldset_2 = document.getElementById('submit');
-      function checkvalue() {
+          
+          
+        const list_data=[]; //1호선 중복체크
+        const socket = io();
+        const name=[]; //닉네임  
+        let turn_num =0;
+        let reset_1= 0; //계속하기 버튼
+        const score_name = [];
+        const score_point= [];
+        const del =[];
+        const exit_name=[];
+        const exit_btn=[];
+        const myid = document.getElementById('myid');
+        const ready = document.getElementById('ready');
+        const fieldset1 = document.getElementById('wait');
+        const fieldset2 = document.getElementById('index');
+        const fieldset3 = document.getElementById('result');
+        const fieldset_1 = document.getElementById('message');
+        const fieldset_2 = document.getElementById('submit');
+
+        function checkvalue() {
         if(a.id.value ==0) {
             alert("이름을 입력하고 Ready 버튼을 누르세요"); 
           } else {
-           alert("입장");
-           let data = a.id.value;
-           socket.emit("enter_list", data);
-           name.push(data);
-           fieldset1.className = "d-none";
-           fieldset2.className = "container-fluid"
+          alert("입장");
+          let data = a.id.value;
+          socket.emit("enter_list", data);
+          name.push(data);
+          fieldset1.className = "d-none";
+          fieldset2.className = "container-fluid"
           }
         }   
         function recheckvalue() {
-           socket.emit("re_enter",name[0]);
-           fieldset3.className = "d-none";
-           fieldset2.className = "container-fluid"
-           fieldset_1.value="";
-           const result_1 = document.getElementById('user_1');
-           result_1.innerText='';
-           const msgclear = document.getElementById('msg');
-           msgclear.innerText='';
+          socket.emit("re_enter",name[0]);
+          fieldset3.className = "d-none";
+          fieldset2.className = "container-fluid"
+          fieldset_1.value="";
+          const result_1 = document.getElementById('user_1');
+          result_1.innerText='';
+          const msgclear = document.getElementById('msg');
+          msgclear.innerText='';
           fieldset_2.className = "btn btn-primary mb-3 disabled";
           document.getElementById("img").style.display="none"; 
           list_data.length=0;
@@ -198,7 +199,7 @@
             console.log(data.num);
             console.log(reset_1);
           if(reset_1 == 3){
-             
+            
             socket.emit("alarm",data);
             socket.emit("start",data.id);
             reset_1.length=0;
@@ -217,6 +218,7 @@
               a.id.value=" ";
               myid.innerText="준비가 되셨으면 버튼을 눌러주세요 !";
               name.length=0;
+              
             }
         })
         //들어올때
@@ -225,18 +227,19 @@
         if (data.num < 3){
           
             var username = document.getElementById('username');
-            username.innerText = `곧 시작합니다 잠시만 기다려주세요`
+            username.innerText = `다른 게임 참가자를 기다리고 있습니다`;
 
         }
         else if (data.num ==3){
             var username = document.getElementById('username');
-            username.innerText = `곧 시작합니다 잠시만 기다려주세요`;
+            username.innerText = `다른 게임 참가자를 기다리고 있습니다`;
+            
             socket.emit("alarm",data);
             socket.emit("start",data.id);
         }
         else{
-          var username = document.getElementById('username');
-            username.innerText = `게임이 진행중입니다 관전하세요`
+          var username_2 = document.getElementById('username_2');
+            username_2.innerText = `게임이 진행중입니다 관전하세요`;
             
         }
       });
@@ -251,22 +254,19 @@
             username.innerText = ``;
       })
       socket.on("member_list",(data) =>{
-      if(name.indexOf(data)>-1){
+      if(name.indexOf(data.id)>-1){
           let mem = document.getElementById("memberSelect");
-        mem.innerText += `내 아이디: ${data}\n`;
+        mem.innerText += `내 아이디: ${data.id} 점수 : ${data.point}\n`;
         }
         else{
           let mem = document.getElementById("memberSelect");
-        mem.innerText += `닉네임:${data}\n`;
+        mem.innerText += `닉네임:${data.id} 점수 : ${data.point}\n`;
         }
       });
-      socket.on("error",(exit) => {
-        exit_name=exit;
-      });
+
       //진행중에 껏을때
       socket.on("start_turn",(data)=>{  
         if(name.indexOf(data)>-1 ){ //순서 에맞는 클라이언트가
-          if(!exit_name){    //나간애가 없으면
           console.log(name.indexOf(data));
           document.getElementById("img").style.display="block";   
           fieldset_1.className = "form-control mb-3";
@@ -276,25 +276,34 @@
             var username = document.getElementById('usercount123');
             username.innerText = `${count.number}초남음`;
           });
-          }
-          else{
-            if(del[0]==exit_name){      
-                alert(`${exit_name}님이 나가셨습니다.`); 
-                fieldset2.className = "d-none";
-                fieldset3.className = "container-fluid"
-                console.log(data);
-                socket.emit("score_exit",exit_name);
-                socket.emit("countdownstopbtn",(data));
-              
-              }
-            else{
-              console.log(`${exit_name}가 나감`);
-              
-              }
-            }
       }
-      console.log(name[0]);
-      exit_name="";
+        if(name.indexOf(del[0])>-1){
+            var username_2 = document.getElementById('username_2');
+              username_2.innerText = `게임이 진행중입니다 관전하세요`;
+          }
+        socket.on("error",(exit) => {
+              
+            if(fieldset2.className == "container-fluid"){
+              if(exit_btn[0] != exit){
+                if(del[0] != exit){      
+                    alert(`${exit}님이 나가셨습니다.`); 
+                    fieldset2.className = "d-none";
+                    fieldset3.className = "container-fluid"
+                    console.log(data);
+                    socket.emit("countdownstopbtn",(data));
+                    socket.emit("score_exit",exit);
+                    
+                  
+                  }
+                else{
+                  console.log(`대기자 ${exit}가 나감`);
+                  
+                  } 
+                }
+
+          }
+            });
+          
       });
 
        
@@ -332,7 +341,7 @@
             ptag.appendChild(node);
             log.appendChild(ptag);
             list_data.push(data.message);
-            turn_num ++; //랜덤골라서 숫자 돌렸는데 이게 독립적이다보니까 처음랜덤 다음에 그게 다시나올수도있음
+            turn_num ++; 
             console.log(data.id, "에서 보낸 메시지 : ", data.message);
             fieldset_1.value="";
             fieldset_1.className = "form-control mb-3 disabled";
@@ -386,7 +395,7 @@
       }}
       let mem = document.getElementById("memberSelect");
           mem.innerText ='';
-      console.log(score_name[0],score_point[0]);
+      
       let name_1 = document.getElementById("user_1");
       name_1.innerText= `${score_name[0]} :${score_point[0]}`;
       let name_2 = document.getElementById("user_2");
@@ -401,10 +410,17 @@
       }
         score_name.length=0;
         score_point.length=0;
+        
+        exit_btn.length=0;
       });
       
       const submit = () => {
         let data = document.getElementById("message").value;
+        if(data==0){
+          alert("입력하세요!");
+        }
+        else{
         socket.emit("input", data);
+      }
       };
 </script>
