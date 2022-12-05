@@ -96,10 +96,9 @@ const socketHandler = (server) => {
     // 모두에게
     socket.on("input", (data) => {
       io.emit("msg", { id: nickname_1, message: data, socketid:socket.id });
-      //console.log(socket.id, " 가 보낸 메시지 : ", data);
       turn ++;
     });
-    
+
     socket.on("countdownbtn",(data) => {
       isStop=false;
       counter=10;
