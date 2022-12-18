@@ -1,0 +1,334 @@
+<!--로그인 후 사용자 관심 기반 추천 맛집/레시피 페이지-->
+<!doctype html>
+<html lang="en">
+  <head><!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDCM2F77Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-RDCM2F77Z4');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>관심사 페이지</title>
+  <style>
+    
+    body{
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 900;
+    }      
+    #wrap{
+        width: auto;
+        margin: 0 auto;
+      }
+      .btn_pro{
+        margin: 5px 20px;
+        color:black;
+        background-color: lightgrey;
+        border-radius: 30px;
+        display: block;
+        padding: 20px 30px;
+        text-decoration: none;
+      }
+      .recommand{
+        display: flex;
+        justify-content: center;
+        
+      }
+      .img-box > img {
+      display:block;
+      cursor:pointer;
+    }
+    .cell {
+      float:left;
+      box-sizing: border-box;
+    }
+    .row::after {
+      content:"";
+      display:block;
+      clear:both;
+    }
+    .con {
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .con {
+      max-width: 1500px;
+    }
+    .list-box-1 > ul > li {
+      width:50%;
+      padding:0 10px;
+      margin-top:20px;
+    }
+  
+      .place{
+width: 50%;
+display: inline-block;
+justify-content: center;
+position: relative;
+      }
+      .recipe{
+        width: 50%;   
+      display: inline-block;
+      position: relative;
+      justify-content: center;
+      }
+      .btn {            
+            border: none;
+            width: auto;
+            background-color: lightblue;
+            color: white;
+            padding: 10px 10px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: .2s;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background-color: lightblue;
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="nav">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./interest">우리집은 미슐랭 3스타</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./mainplace">맛집</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./mainrecipe">레시피</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./info">공지사항</a>
+            </li>
+            </ul>
+            <form class="d-flex">
+              <a href="./profile">
+              <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MTJfMTM3%2FMDAxNjU1MDI1Mjc1MzU3.OVYKwTpbFBOJReYnuQozRpBrDPFf12f0o7qzDcOB4jkg.zFniiigVs2n9VHeyglPDcO5sJ7PX5uSHP3gvc5FoN9Mg.PNG.kimgomram%2Fimage.png&type=a340" class="img-thumbnail" width="100px" height="120px">
+              </a>
+              <input class= "form-control search_input " id="searchInput" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success " onclick="search_click()" type="button" id="search_btn" >SEARCH</button>
+              <button class="btn btn-outline-success" onclick="location.href='/api/users/logout'" type="button" >LOGOUT</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+  </div>
+        <div class="p-3 mb-2 text-dark" style="background-color: #ed969677;">
+          <h3 style="text-align: center;">추천 맛집 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            추천 레시피</h3>
+        </div>
+        
+<div class="recommand">
+        <div class="place">
+            <div class="list-box-1 con">
+                <ul class="row">
+            <% for(var i=place.length; i>place.length-4; i--){ %>
+                <li id="cell" class="cell">
+                  <a  onclick="place_name('<%= place[i-1].placeName %>','<%= place[i-1].p_key %>')">
+                    <div class="img-box"> 
+                    <img src = <%= place[i-1].image1 %> width="350px" height="350px"></div></a>
+                <h4><%= place[i-1].title %></h4>
+                <p><%= place[i-1].country%> <%=place[i-1].foodType %></p>
+        </li>
+         <% } %> 
+        </ul>
+        </div>
+    </div>
+            <div class="recipe">
+                <div class="list-box-1 con">
+                    <ul class="row">
+                <% for(var i=recipe.length; i>recipe.length-4; i--){ %>
+                    <li id="cell" class="cell">
+                      <a  onclick="recipe_key('<%= recipe[i-1].food1 %>','<%= recipe[i-1].r_key %>')">
+                        <div class="img-box"> 
+                  <img src= <%= recipe[i-1].image %> width="350px" height="350px"></div></a>
+                  <h4> <%= recipe[i-1].RCP_NM %></h4>
+                  <p><%= recipe[i-1].food1%></p>
+           
+            </li>
+          <% } %> 
+        </ul>
+        </div>
+        </div>
+        </div>  
+
+        <div class="p-3 mb-2 text-dark text-center">
+          <div class="row justify-content-center">
+            <div class="col-5">
+              <a href="./mainplace"><button class="btn"><h5> &nbsp; &nbsp;더보기 &nbsp; &nbsp;</h5></button></a>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-6">
+              <a href="./mainrecipe"><button class="btn"><h5> &nbsp; &nbsp;더보기 &nbsp; &nbsp;</h5></button></a>
+            </div>
+        </div>
+
+        <script>
+     let s_data = []
+  let name_arr = []
+  //검색 데이터
+  fetch("/api/users/search")
+  .then((response) => response.json())
+  .then(arr => {
+  console.log("성공공", arr)
+  s_data = arr
+  arr.forEach(el => {
+    name_arr.push(el.name)
+  });
+  console.log(name_arr)
+  $("#searchInput").autocomplete({  //오토 컴플릿트 시작
+    
+    source: name_arr,	// source는 data.js파일 내부의 List 배열
+    focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+      return false;
+    },
+    minLength: 1,// 최소 글자수
+    delay: 100,	//autocomplete 딜레이 시간(ms)
+    //disabled: true, //자동완성 기능 끄기
+    select: function(event,ui){ //close 이벤트에 form submit을 추가 해줍니다.
+      console.log(arr)
+      arr.forEach(el => {
+        if (el.name === ui.item.value) {
+        console.log(el.type)
+        console.log(el.key)
+          if (el.type == "p") {
+            place_name(el.name)
+          }
+          else{
+            recipe_key(el.foodT, el.name)
+          }
+        }
+      });
+    }
+  });
+
+
+  });
+
+
+
+  function search_click(){
+    let a = document.getElementById('searchInput').value
+      if (a === "") {
+        alert("검색어를 입력하세요!")
+      }
+      else if(name_arr.includes(a)){
+        s_data.forEach(el => {
+          if (el.name === a) {
+            console.log(el.type)
+            console.log(el.key)
+              if (el.type == "p") {
+                place_name(el.name)
+              }
+              else{
+                recipe_key(el.foodT, el.name)
+              }
+            }
+            
+          });
+      }
+      else{
+        alert("존재하지 않는 데이터입니다!")
+      }
+
+  }
+
+  function recipe_key(r_type,r_key){
+  console.log(r_key);
+  let data2 = { "r_key": r_key, };
+    fetch('/recipe_review_detail', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data2),
+      })
+      .then((response) => response.json())
+      .then((data2) => {
+        console.log('성공:', data2.r_key);
+        window.location.href="/recipe_review_detail?r_type="+r_type+"&?r_key="+r_key
+      })
+      .catch((error) => {
+        console.log('실패:', error);
+    });
+
+  }
+
+  function place_name(p_name){
+    console.log(p_name);
+    let data3 = { "p_name": p_name, };
+      fetch('/place_review_all', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data3),
+        })
+        .then((response) => response.json())
+        .then((data3) => {
+          console.log('성공:', data3.p_name);
+          window.location.href="/place_review_all?p_name="+data3.p_name
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    
+    }
+          
+
+          const token = {"token":""};
+          fetch("/api/users/login")
+            .then((response) => response.json())
+            .then((token) => {
+              console.log('성공', token["token"])
+              sessionStorage.setItem("token", token["token"]);//sessionStorage에 token저장
+              const jwt = sessionStorage.getItem("token")
+              console.log(parseJwt(jwt))
+              const id = parseJwt(jwt)
+              alert('환영합니다! '+id+' 님!');
+              
+            })
+
+   
+          
+          
+          //JWT 복호화 후 id만 리턴
+          function parseJwt (token) {
+              var base64Url = token.split('.')[1];
+              var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+              var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+              }).join(''));
+
+              return JSON.parse(jsonPayload).id;
+          };
+
+
+
+          
+        </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>

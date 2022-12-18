@@ -1,0 +1,335 @@
+<!--맛집 게시물 작성 페이지-->
+<!doctype html>
+<html lang="en">
+  <head><!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDCM2F77Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-RDCM2F77Z4');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>맛집 글 작성 화면</title>
+  <style>
+    body{
+      font-family: 'Times New Roman', Times, serif;
+      font-weight: 900;
+    }      
+      .form-group{width: 700px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="nav">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./interest">우리집은 미슐랭 3스타</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./mainplace">맛집</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./mainrecipe">레시피</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./info">공지사항</a>
+            </li>
+            </ul>
+            <form class="d-flex">
+              <a href="./profile">
+              <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MTJfMTM3%2FMDAxNjU1MDI1Mjc1MzU3.OVYKwTpbFBOJReYnuQozRpBrDPFf12f0o7qzDcOB4jkg.zFniiigVs2n9VHeyglPDcO5sJ7PX5uSHP3gvc5FoN9Mg.PNG.kimgomram%2Fimage.png&type=a340" class="img-thumbnail" width="100px" height="120px">
+              </a>
+              <input class= "form-control search_input" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" onclick="search_click()" type="button">SEARCH</button>
+              <button class="btn btn-outline-success" onclick="location.href='/api/users/logout'" type="button" >LOGOUT</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+  </div>
+  <div style="height: 25px;"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+    </div>
+    <div class="col-6">
+<div class="write">
+    <h4>맛집 게시물 작성하기</h4>
+    <form action="/write_place" method="post" enctype="multipart/form-data" >
+      <input type="text" name="id" value="" id="id" style="display: none">
+        <div class="form-group">
+            <label for="place">가게 이름</label>
+            <input type="text" class="form-control" id="place" name="place" placeholder="가게 이름을 입력하세요" required>
+        </div>
+        <div class="form-group">
+            <label for="title">리뷰 제목</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="리뷰 제목..." required>
+        </div>
+        <div class="form-group">
+            <label for="pic">사진 업로드하기</label>
+            <input type="file" class="form-control" id="pic" name="pic" required accept="image/*" multiple>
+        </div>
+        <div class="form-group">
+            <label for="loc">가게 위치</label>
+            <input type="text" class="form-control" id="loc" name="loc" placeholder="가게 위치">
+        </div>
+        <div class="menu">
+            <label for="menu">메뉴</label>
+            <div style="display: flex;">
+            <input type="text" class="form-control" id="menu" name="menu" placeholder="메뉴">
+            <input type="text" class="form-control" id="menu" name="menu" placeholder="가격" style="width: 180px;">
+        </div>
+        <div style="display: flex;">
+            <input type="text" class="form-control" id="menu" name="menu" placeholder="메뉴">
+        </div>
+        <div style="display: flex;">
+            <input type="text" class="form-control" id="menu" name="menu" placeholder="메뉴">
+        </div>        </div>
+        <input type=button id="add" value='메뉴 추가' onclick="add()">
+        
+        <div class="form-group" style="width: 250px;">
+            <label for="content">카테고리 선택</label>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect02">나라</label>
+                <select class="form-select" id="country_s" onchange="changeValueC(this)">
+                  <option selected>선택...</option>
+                  <option>미국</option>
+                  <option>일본</option>
+                  <option>중국</option>
+                  <option>이탈리아</option>
+                  <option>프랑스</option>
+                  <option>태국</option>
+                  <option>베트남</option>
+                </select></div>
+                <input type="text" name="country" value="" id="country" style="display: none">
+                <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect02">음식</label>
+            <select class="form-select" id="food_s"  onchange="changeValueF(this)">
+              <option selected>선택...</option>
+                <option>한식</option>
+                <option>중식</option>
+                <option>일식</option>
+                <option>양식</option>
+                <option>분식??</option>
+                <option>카페</option>
+                <option>기타</option>
+            </select>        </div>
+            <input type="text" name="food" value="" id="food" style="display: none">
+        <div class="form-group">
+            <label for="content"><h5>맛집 소개</h5></label>
+            <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">작성 완료</button>
+
+    </form>
+</div>
+</div>
+<div class="col-3">
+</div>
+</div>
+
+<script>
+       let s_data = []
+  let name_arr = []
+  //검색 데이터
+  fetch("/api/users/search")
+  .then((response) => response.json())
+  .then(arr => {
+  console.log("성공공", arr)
+  s_data = arr
+  arr.forEach(el => {
+    name_arr.push(el.name)
+  });
+  console.log(name_arr)
+  $("#searchInput").autocomplete({  //오토 컴플릿트 시작
+    
+    source: name_arr,	// source는 data.js파일 내부의 List 배열
+    focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+      return false;
+    },
+    minLength: 1,// 최소 글자수
+    delay: 100,	//autocomplete 딜레이 시간(ms)
+    //disabled: true, //자동완성 기능 끄기
+    select: function(event,ui){ //close 이벤트에 form submit을 추가 해줍니다.
+      console.log(arr)
+      arr.forEach(el => {
+        if (el.name === ui.item.value) {
+        console.log(el.type)
+        console.log(el.key)
+          if (el.type == "p") {
+            place_name(el.name)
+          }
+          else{
+            recipe_key(el.foodT, el.name)
+          }
+        }
+      });
+    }
+  });
+
+
+  });
+
+
+
+  function search_click(){
+    let a = document.getElementById('searchInput').value
+      if (a === "") {
+        alert("검색어를 입력하세요!")
+      }
+      else if(name_arr.includes(a)){
+        s_data.forEach(el => {
+          if (el.name === a) {
+            console.log(el.type)
+            console.log(el.key)
+              if (el.type == "p") {
+                place_name(el.name)
+              }
+              else{
+                recipe_key(el.foodT, el.name)
+              }
+            }
+            
+          });
+      }
+      else{
+        alert("존재하지 않는 데이터입니다!")
+      }
+
+  }
+
+  function recipe_key(r_type,r_key){
+  console.log(r_key);
+  let data2 = { "r_key": r_key, };
+    fetch('/recipe_review_detail', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data2),
+      })
+      .then((response) => response.json())
+      .then((data2) => {
+        console.log('성공:', data2.r_key);
+        window.location.href="/recipe_review_detail?r_type="+r_type+"&?r_key="+r_key
+      })
+      .catch((error) => {
+        console.log('실패:', error);
+    });
+
+  }
+
+  function place_name(p_name){
+    console.log(p_name);
+    let data3 = { "p_name": p_name, };
+      fetch('/place_review_all', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data3),
+        })
+        .then((response) => response.json())
+        .then((data3) => {
+          console.log('성공:', data3.p_name);
+          window.location.href="/place_review_all?p_name="+data3.p_name
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    
+    }
+
+
+
+
+// 이미지 파일 서버에 저장
+
+
+const changeValueC = (target) => {
+  // 선택한 option의 text 값
+  document.getElementById(`country`).value = target.options[target.selectedIndex].text;
+  console.log(target.options[target.selectedIndex].text);
+}
+const changeValueF = (target) => {
+  // 선택한 option의 text 값
+  document.getElementById(`food`).value = target.options[target.selectedIndex].text;
+  console.log(target.options[target.selectedIndex].text);
+}
+
+    const token = {"token":""};
+  const jwt = sessionStorage.getItem("token")
+        if (jwt == "") {
+          location.href="/"
+          alert("로그인 시간을 초과했습니다. 재로그인 하세요.")
+        }
+
+        const id = parseJwt(jwt)
+        document.getElementById(`id`).value = id;
+
+        /*
+        let place = document.getElementById("place")
+        let title = document.getElementById("title")
+        let pic = document.getElementById("pic")
+        let loc = document.getElementById("loc")
+        let menu = document.getElementById("menu")
+        let content = document.getElementById("content")
+        let country = document.getElementById("country")
+        let food = document.getElementById("food")
+
+        let data = { "id": id, "place": place, "title": title, "pic": pic, "loc": loc, "menu": menu, "content": content };
+        fetch('/write_place1', {
+                method: 'POST', 
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('성공:', data);
+                //let name = data[1];
+                //document.getElementById('name').innerHTML = name+" 님"//현재 로그인된 사용자 표시
+              })
+              .catch((error) => {
+                console.log('실패:', error);
+            });
+  */
+  
+  //JWT 복호화 후 id만 리턴
+  function parseJwt (token) {
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+
+      return JSON.parse(jsonPayload).id;
+    };
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+      $("#add").click(function(){
+          //const html = $("#ingre").html();
+          $(".menu").append('            <div style="display: flex;">            <input type="text" class="form-control" id="menu" name="menu" placeholder="메뉴"></div>');
+      });
+  });</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>

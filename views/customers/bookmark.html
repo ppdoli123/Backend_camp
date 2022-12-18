@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+  <head><!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDCM2F77Z4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-RDCM2F77Z4');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>북마크</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body>
+      <div class="container-fluid">
+        <h1>북마크</h1>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-place-tab" data-bs-toggle="tab" data-bs-target="#nav-place" type="button" role="tab" aria-controls="nav-place" aria-selected="true">맛집</button>
+              <button class="nav-link" id="nav-recipe-tab" data-bs-toggle="tab" data-bs-target="#nav-recipe" type="button" role="tab" aria-controls="nav-recipe" aria-selected="false">레시피</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-place" role="tabpanel" aria-labelledby="nav-place-tab" tabindex="0">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                      <a onclick="place_key1()">
+                    <div class="card h-100" id="p1" style="display: none;">
+                        <img src="" class="card-img-top" id="p_img1">
+                        <div class="card-body">
+                        <p class="card-text" id="p_title1">글 제목</p>
+                        </div>
+                    </div></a>
+                    </div>
+                    <div class="col">
+                      <a onclick="place_key2()">
+                      <div class="card h-100" id="p2" style="display: none;">
+                          <img src="" class="card-img-top" id="p_img2">
+                          <div class="card-body">
+                          <p class="card-text" id="p_title2">글 제목</p>
+                          </div>
+                      </div></a>
+                      </div>
+                      <div class="col">
+                        <a onclick="place_key3()">
+                        <div class="card h-100" id="p3" style="display: none;">
+                            <img src="" class="card-img-top" id="p_img3" >
+                            <div class="card-body">
+                            <p class="card-text" id="p_title3">글 제목</p>
+                            </div>
+                        </div></a>
+                        </div>
+                        <div class="col">
+                          <a onclick="place_key4()">
+                          <div class="card h-100"id="p4" style="display: none;">
+                              <img src="" class="card-img-top" id="p_img4">
+                              <div class="card-body">
+                              <p class="card-text" id="p_title4">글 제목</p>
+                              </div>
+                          </div></a>
+                          </div>
+                            <div class="col">
+                              <a onclick="place_key5()">
+                              <div class="card h-100"id="p5" style="display: none;">
+                                  <img src="" class="card-img-top" id="p_img5">
+                                  <div class="card-body">
+                                  <p class="card-text" id="p_title5">글 제목</p>
+                                  </div>
+                              </div></a>
+                              </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-recipe" role="tabpanel" aria-labelledby="nav-recipe-tab" tabindex="0">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="col">
+                    <a onclick="recipe_key1()">
+                  <div class="card h-100" id="r1" style="display: none;">
+                      <img src="" class="card-img-top" id="r_img1">
+                      <div class="card-body">
+                      <p class="card-text" id="r_title1">글 제목</p>
+                      </div>
+                  </div></a>
+                  </div>
+                  <div class="col">
+                    <a onclick="recipe_key2()">
+                  <div class="card h-100" id="r2" style="display: none;">
+                      <img src="" class="card-img-top" id="r_img2">
+                      <div class="card-body">
+                      <p class="card-text" id="r_title2">글 제목</p>
+                      </div>
+                  </div></a>
+                  </div>
+                  <div class="col">
+                    <a onclick="recipe_key3()">
+                  <div class="card h-100" id="r3" style="display: none;">
+                      <img src="" class="card-img-top" id="r_img3">
+                      <div class="card-body">
+                      <p class="card-text" id="r_title3">글 제목</p>
+                      </div>
+                  </div></a>
+                  </div>
+                  <div class="col">
+                    <a onclick="recipe_key4()">
+                  <div class="card h-100" id="r4" style="display: none;">
+                      <img src="" class="card-img-top" id="r_img4">
+                      <div class="card-body">
+                      <p class="card-text" id="r_title4">글 제목</p>
+                      </div>
+                  </div></a>
+                  </div>
+                  <div class="col">
+                    <a onclick="recipe_key5()">
+                  <div class="card h-100" id="r5" style="display: none;">
+                      <img src="" class="card-img-top" id="r_img5">
+                      <div class="card-body">
+                      <p class="card-text" id="r_title5">글 제목</p>
+                      </div>
+                  </div></a>
+                  </div>
+                </div>
+            </div>
+            
+          </div>
+
+        
+
+    </div>
+    <script>
+        const jwt = sessionStorage.getItem("token")
+        if (jwt == "") {
+          location.href="/"
+          alert("로그인 시간을 초과했습니다. 재로그인 하세요.")
+        }
+
+        const id = parseJwt(jwt)
+        let p_key=[], r_key=[], r_type=[], p_name=[]
+        let data = { "id": id };
+        fetch('/bookmark', {
+                method: 'POST', 
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('성공:', data);
+                //전달 받은 key값을 페이지에 맞게 자동적으로 링크 걸리게 변환 필요
+                //key값말고도 카드 장식할 정보를 받아올 수 있는 sql을 만들어 구현
+                console.log(data[0])
+                console.log(data.length);
+            for (let i=0; i< data[0].length; i++){
+              document.getElementById(`p${i+1}`).style.display = "block";
+            //document.getElementById(`p_place${i+1}`).innerHTML = "식당: "+data[0][i][0];
+            document.getElementById(`p_title${i+1}`).innerHTML = data[0][i][1];
+            document.getElementById(`p_img${i+1}`).src = data[0][i][2];
+            p_key[i] = data[0][i][3];
+            p_name[i] = data[0][i][0];
+            }
+            for (let i=0; i< data[1].length; i++){
+              document.getElementById(`r${i+1}`).style.display = "block";
+            document.getElementById(`r_title${i+1}`).innerHTML = data[1][i][0];
+            document.getElementById(`r_img${i+1}`).src = data[1][i][1];
+            r_key[i] = data[1][i][2];
+            r_type[i] = data[1][i][3];
+            console.log(r_key[i]);
+            }
+            
+              })
+              .catch((error) => {
+                console.log('실패:', error);
+            });
+
+
+      
+        //JWT 복호화 후 id만 리턴
+        function parseJwt (token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload).id;
+        };
+
+
+        function place_key1(){
+    console.log(p_key[0]);
+    let data = { "p_key": p_key[0] };
+      fetch('/place_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.p_key);
+          window.location.href="/place_review_detail?p_name="+p_name[0]+"&?p_key="+p_key[0];
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function place_key2(){
+    let data = { "p_key": p_key[1] };
+      fetch('/place_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.p_key);
+          window.location.href="/place_review_detail?p_name="+p_name[1]+"&?p_key="+p_key[1];
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function place_key3(){
+    let data = { "p_key": p_key[2] };
+      fetch('/place_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.p_key);
+          window.location.href="/place_review_detail?p_name="+p_name[2]+"&?p_key="+p_key[2];
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function place_key4(){
+    let data = { "p_key": p_key[3] };
+      fetch('/place_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.p_key);
+          window.location.href="/place_review_detail?p_name="+p_name[3]+"&?p_key="+p_key[3];
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function place_key5(){
+    let data = { "p_key": p_key[4] };
+      fetch('/place_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.p_key);
+          window.location.href="/place_review_detail?p_name="+p_name[4]+"&?p_key="+p_key[4];
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function recipe_key1(){//r_type,r_key
+    console.log("key", r_key[0]);
+    let data = { "r_key": r_key[0], };
+      fetch('/recipe_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.r_key);
+          window.location.href="/recipe_review_detail?r_type="+r_type[0]+"&?r_key="+r_key[0]
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function recipe_key2(){
+    let data = { "r_key": r_key[1]};
+      fetch('/recipe_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.r_key);
+          window.location.href="/recipe_review_detail?r_type="+r_type[1]+"&?r_key="+r_key[1]
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function recipe_key3(){
+    let data = { "r_key": r_key[2]};
+      fetch('/recipe_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.r_key);
+          window.location.href="/recipe_review_detail?r_type="+r_type[2]+"&?r_key="+r_key[2]
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function recipe_key4(){
+    let data = { "r_key": r_key[3]};
+      fetch('/recipe_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.r_key);
+          window.location.href="/recipe_review_detail?r_type="+r_type[3]+"&?r_key="+r_key[3]
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+    function recipe_key5(){
+    let data = { "r_key": r_key[4]};
+      fetch('/recipe_review_detail', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data.r_key);
+          window.location.href="/recipe_review_detail?r_type="+r_type[4]+"&?r_key="+r_key[4]
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+</html>
+
