@@ -13,9 +13,10 @@
 
 ### ⚙️개발환경
 ---
-`Java Script`
-`node.js`
-
+- `Java Script`
+- `node.js`
+- **Database** : MySQL
+- `AWS`
 ## 📌주요기능
 ---
 <https://www.figma.com/file/Rz3NQNo83LEczjUqxUX5vT/%EC%9B%B9%EC%84%A4%EA%B3%84?type=design&node-id=1-3&mode=design&t=vBWoghbxS1iPK7ld-0>
