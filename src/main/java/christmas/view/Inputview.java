@@ -36,7 +36,11 @@ public class Inputview {
     }
 
     private static Menu findMenuByName(List<Menu> menuList, String menuName) {
-
+        for (Menu menu : menuList) {
+            if (menu.getName().equals(menuName)) {
+                return menu;
+            }
+        }
         return null;
     }
 }
