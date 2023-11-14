@@ -3,7 +3,7 @@ package christmas.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Discountinfo {
+public class DiscountInfo {
     private int totalOrderAmount;
     private boolean weekdayDiscount;
     private boolean weekendDiscount;
@@ -11,7 +11,7 @@ public class Discountinfo {
     private Menu giftMenu;
     private List<String> benefits;
 
-    public Discountinfo() {
+    public DiscountInfo() {
         this.totalOrderAmount = 0;
         this.weekdayDiscount = false;
         this.weekendDiscount = false;
@@ -85,5 +85,9 @@ public class Discountinfo {
         return totalOrderAmount + getTotalBenefitsAmount();
     }
 
+    public String getEventBadge() {
+        return EventBadgeCalculator.getEventBadge(totalOrderAmount);
+
+    }
 
 }
