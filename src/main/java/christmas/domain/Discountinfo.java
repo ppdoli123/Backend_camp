@@ -68,4 +68,18 @@ public class Discountinfo {
         this.benefits.add(benefit);
     }
 
+    public int getTotalBenefitsAmount() {
+        int totalBenefitsAmount = 0;
+
+        for (String benefit : benefits) {
+            if (benefit.contains("-")) {
+                String amountString = benefit.split("-")[1].trim();
+                int amount = Integer.parseInt(amountString.replaceAll("[^0-9]", ""));
+                totalBenefitsAmount -= amount;
+            }
+        }
+
+        return totalBenefitsAmount;
+    }
+
 }
