@@ -81,5 +81,9 @@ public class Discountinfo {
 
         return totalBenefitsAmount;
     }
+    public int getExpectedPaymentAmount() {
+        return totalOrderAmount + getTotalBenefitsAmount();
+    }
+
 
 }
