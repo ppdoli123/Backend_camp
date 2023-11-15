@@ -9,7 +9,6 @@ public class DiscountCalculator {
         DiscountInfo discountInfo = new DiscountInfo();
         discountInfo.setTotalOrderAmount(totalOrderAmount);
 
-        // 할인 정보 설정
         if (visitDate >= 1 && visitDate <= 25) {
             int discountAmount = (visitDate - 1) * 100;
             discountInfo.setTotalOrderAmount(totalOrderAmount - discountAmount);
@@ -53,7 +52,7 @@ public class DiscountCalculator {
     }
 
     private static boolean isWeekend(int visitDate) {
-        return visitDate % 7 == 5 || visitDate % 7 == 6;
+        return visitDate % 7 == 1 || visitDate % 7 == 2;
     }
 
     private static boolean isSpecialDiscount(int visitDate) {
@@ -68,6 +67,6 @@ public class DiscountCalculator {
     }
 
     private static boolean isGiftEventQualified(int totalOrderAmount) {
-        return totalOrderAmount >= 5000;
+        return totalOrderAmount >= 120000;
     }
 }
