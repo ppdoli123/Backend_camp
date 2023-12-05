@@ -1,0 +1,543 @@
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDCM2F77Z4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RDCM2F77Z4');
+</script>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
+  <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <title>메인 레시피 페이지</title>
+</head>
+<style>
+  html, body {
+    overflow-x: hidden;
+  }
+  #wrap{
+      width: 100%;
+  margin: 0 auto;
+    }
+    .wrap2{
+  width: 85%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+    .box{
+      line-height: 10px;
+      margin: 5px 10px;
+      color:black;
+      background-color: orange;
+      border-radius: 20px;
+      display: block;
+      padding: 20px 20px;
+      width: 85px;
+      height: 48px;
+    }
+    .category{
+      margin: 13px 80px;
+      color:black;
+      display: block;
+      padding: 20px 20px;
+    }
+    .contury{
+      margin: 5px 10px;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .food{
+      margin: 5px 10px;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .detail{
+      margin: 5px 10px;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+    } 
+    .recipe{
+      float: left;
+      margin: 10px 60px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  height: 330px;
+    }
+    .recipelist{
+      width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-top:30px;
+  text-align: center;
+    }
+    .sort{
+      margin: 0px 70px;
+    }
+    div > article{
+  float: left;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+.btn {            
+          border: none;
+          width: auto;
+          background-color: lightblue;
+          color: white;
+          padding: 15px auto;
+          font-weight: 600;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: .2s;
+      }
+      .btn:hover {
+          background-color: lightblue;
+      }
+      .sortB{
+        border: none;
+          width: auto;
+          background-color: yellowgreen;
+          color: black;
+          padding: 20px auto;
+          font-weight: 600;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: .2s;
+      }
+  body, ul ,li {
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  a{
+    color:inherit;
+    text-decoration: none;
+  }
+  .table-TableBox {
+    margin-top:20px;
+    text-align:center;
+  }
+  .bn-box-1 {
+    background-color:red;
+  }
+
+  .img-box > img {
+    width:100%;
+    height:75%;
+    display:block;
+  }
+  .cell {
+    float:left;
+    box-sizing: border-box;
+  }
+  .row::after {
+    content:"";
+    display:block;
+    clear:both;
+  }
+  .con {
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .con {
+    max-width: 1500px;
+  }
+  .list-box-1 > ul > li {
+    width:20%;
+    padding:0 10px;
+    margin-top:20px;
+  }
+  @media (min-width:801px) {
+    .list-box-1 > ul > li {
+    width:20%;
+    }
+  }
+  @media (max-width:800px) and (min-width:601px) {
+    .list-box-1 > ul > li {
+    width:33.333%;}
+  }
+  @media (max-width:600px)  {
+    .list-box-1 > ul > li {
+    width:50%;}
+  }
+  .list-box-1 > ul {
+    margin:0 -10px;
+  }
+
+  </style>
+</style>
+<body>
+<body>
+  <div id="wrap">
+    <div class="container-fluid">
+    <div id="nav">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="./interest">우리집은 미슐랭 3스타</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="./mainplace">맛집</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./mainrecipe">레시피</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./info">공지사항</a>
+            </li>
+            </ul>
+            <form class="d-flex">
+              <a href="./profile">
+              <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMjA2MTJfMTM3%2FMDAxNjU1MDI1Mjc1MzU3.OVYKwTpbFBOJReYnuQozRpBrDPFf12f0o7qzDcOB4jkg.zFniiigVs2n9VHeyglPDcO5sJ7PX5uSHP3gvc5FoN9Mg.PNG.kimgomram%2Fimage.png&type=a340" class="img-thumbnail" width="100px" height="120px">
+              </a>
+              <input class= "form-control search_input" id="searchInput" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" onclick="search_click()" type="button">SEARCH</button>
+              <button class="btn btn-outline-success" onclick="location.href='/api/users/logout'" type="button" >LOGOUT</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+  </div>
+  <div class="wrap2">
+      <div class="category">
+  <div class="food">
+    <box class="box"><p  style="font-size: 20px; text-align: center;">음식</p></box> 
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check"    name="cate1-tab" id="한식" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="한식" id="한식"  onclick="foodType_select(this)">한식</label>
+    
+      <input type="radio" class="btn-check" name="cate1-tab" id="중식" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="중식" id="중식" onclick="foodType_select(this)">중식</label>
+
+      <input type="radio" class="btn-check"    name="cate1-tab" id="일식" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="일식" id="일식" onclick="foodType_select(this)">일식</label>
+    
+      <input type="radio" class="btn-check" name="cate1-tab" id="양식" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="양식"  id="양식" onclick="foodType_select(this)">양식</label>
+
+      <input type="radio" class="btn-check"    name="cate1-tab" id="카페" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="카페"  id="카페"onclick="foodType_select(this)">카페</label>
+    
+      <input type="radio" class="btn-check" name="cate1-tab" id="패스트푸드" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="패스트푸드" id="패스트푸드" onclick="foodType_select(this)">패스트푸드</label>
+
+      <input type="radio" class="btn-check"    name="cate1-tab" id="기타" autocomplete="off" >
+      <label class="btn btn-outline-primary"  for="기타"id="기타"  onclick="foodType_select(this)">기타</label>
+
+    </div>
+
+  </div>
+
+</div>
+      <div class="sort">
+        <button value="최신순" class="sortB" id="new" onclick="newer()">&nbsp;작성순&nbsp;</button>
+        <button value="추천순" class="sortB" id="best" onclick="best()">&nbsp;추천순&nbsp;</button>
+      </div>
+        <div id='box' class="list-box-1 con">
+          <ul id="data2" class="row">
+            <% data.forEach((el,index) => {%>
+            <li class="cell">
+              <!-- 레시피 카테고리 -->
+              <a onclick="recipe_key('<%= el.food1 %>','<%= el.r_key %>')"><div class="img-box">
+            <img style="height: 160px;" src = <%= el.image %> ></div></a>
+        <div class="prod-price"><%= el.RCP_NM %></div>
+        <div class="recommand">추천수 : <%= el.recommand %></div>
+      </li>
+      <% }) %>
+      </ul>
+      </div>
+      <div class="list-box-1 con"  id ="second">
+        <ul id="data22" class="row">
+          <% recipe.forEach((el,index) => {%>
+          <li class="cell">
+            <a onclick="recipe_key('<%= el.food1 %>','<%= el.r_key %>')"><div class="img-box">
+          <img style="height: 160px;" src = <%= el.image %> ></div></a>
+      <div class="prod-price"><%= el.RCP_NM %></div>
+      <div class="recommand">추천수 : <%= el.recommand %></div>
+    </li>
+    <% }) %>
+    </ul>
+    </div>
+    <div style="height: 40px;"></div>
+      <div>
+      <button class="btn" id="writebtn" onclick = "location.href = `/write_recipe`" >글 작성하기 </button></div>
+</body>
+<script>
+      const div1 = document.getElementById("box")
+    const div2 = document.getElementById("second")
+    div2.style.display ='none';
+    function newer(){
+      div1.style.display = 'block';
+      div2.style.display ='none';
+    }
+    function best(){
+      div1.style.display = 'none';
+      div2.style.display ='block';
+    }
+       let s_data = []
+  let name_arr = []
+  //검색 데이터
+  fetch("/api/users/search")
+  .then((response) => response.json())
+  .then(arr => {
+  console.log("성공공", arr)
+  s_data = arr
+  arr.forEach(el => {
+    name_arr.push(el.name)
+  });
+  console.log(name_arr)
+  $("#searchInput").autocomplete({  //오토 컴플릿트 시작
+    
+    source: name_arr,	// source는 data.js파일 내부의 List 배열
+    focus : function(event, ui) { // 방향키로 자동완성단어 선택 가능하게 만들어줌	
+      return false;
+    },
+    minLength: 1,// 최소 글자수
+    delay: 100,	//autocomplete 딜레이 시간(ms)
+    //disabled: true, //자동완성 기능 끄기
+    select: function(event,ui){ //close 이벤트에 form submit을 추가 해줍니다.
+      console.log(arr)
+      arr.forEach(el => {
+        if (el.name === ui.item.value) {
+        console.log(el.type)
+        console.log(el.key)
+          if (el.type == "p") {
+            place_name(el.name)
+          }
+          else{
+            recipe_key(el.foodT, el.name)
+          }
+        }
+      });
+    }
+  });
+
+
+  });
+
+
+
+  function search_click(){
+    let a = document.getElementById('searchInput').value
+      if (a === "") {
+        alert("검색어를 입력하세요!")
+      }
+      else if(name_arr.includes(a)){
+        s_data.forEach(el => {
+          if (el.name === a) {
+            console.log(el.type)
+            console.log(el.key)
+              if (el.type == "p") {
+                place_name(el.name)
+              }
+              else{
+                recipe_key(el.foodT, el.name)
+              }
+            }
+            
+          });
+      }
+      else{
+        alert("존재하지 않는 데이터입니다!")
+      }
+
+  }
+
+  function recipe_key(r_type,r_key){
+  console.log(r_key);
+  let data2 = { "r_key": r_key, };
+    fetch('/recipe_review_detail', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data2),
+      })
+      .then((response) => response.json())
+      .then((data2) => {
+        console.log('성공:', data2.r_key);
+        window.location.href="/recipe_review_detail?r_type="+r_type+"&?r_key="+r_key
+      })
+      .catch((error) => {
+        console.log('실패:', error);
+    });
+
+  }
+
+  function place_name(p_name){
+    console.log(p_name);
+    let data3 = { "p_name": p_name, };
+      fetch('/place_review_all', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data3),
+        })
+        .then((response) => response.json())
+        .then((data3) => {
+          console.log('성공:', data3.p_name);
+          window.location.href="/place_review_all?p_name="+data3.p_name
+        })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+    }
+
+    const token = {"token":""};
+    const jwt = sessionStorage.getItem("token")
+          if (jwt == "") {
+            location.href="/"
+            alert("로그인 시간을 초과했습니다. 재로그인 하세요.")
+          }
+          const id = parseJwt(jwt)
+
+          function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+        return JSON.parse(jsonPayload).id;
+      };
+      console.log("id: ",id)
+    let data = { "id": id, };
+      fetch('/mainplace', {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('성공:', data[0].grade);
+          if(data[0].grade == "silver"){
+            document.getElementById("writebtn").disabled = true;}
+
+          })
+        .catch((error) => {
+          console.log('실패:', error);
+      });
+
+
+  let category ={'foodT':''}
+  function foodType_select(btn){
+    category.foodT = btn.id
+    change_data(category)
+    
+    }
+
+  function change_data(category){
+    
+    fetch('/api/users/r_change_data', {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(category),
+      })
+      .then((response) => response.json())
+      .then((c_data) => {
+        console.log('성공:', c_data);
+        let box =document.getElementById("box")
+        let container =document.getElementById("data2")
+        container.remove();
+
+        let ultag = document.createElement("ul")
+        ultag.id = "data2"
+        ultag.classList.add("row")
+
+        c_data.first.forEach((el,index) => {
+          let litag = document.createElement("li")
+          litag.id='cell'
+          litag.classList.add('cell')
+          let atag = document.createElement("a")
+          atag.onclick=() => recipe_key(el.food1,el.r_key)
+          let div1 = document.createElement("div")
+          div1.classList.add("img-box")
+          let imagetag = document.createElement("img")
+          imagetag.src=el.image
+          imagetag.style = ("height: 160px;")
+          let div2 = document.createElement("div")
+          div2.id="name"
+          div2.classList.add("prod-price")
+          div2.innerHTML = el.RCP_NM
+          let div3 = document.createElement("div")
+          div3.classList.add("recommand")
+          div3.innerHTML = "추천수 : "+el.recommand
+          div1.appendChild(imagetag);
+          atag.appendChild(div1);
+          litag.appendChild(atag);
+          litag.appendChild(div2);
+          litag.appendChild(div3);
+          ultag.appendChild(litag);
+          
+          
+        })
+        box.appendChild(ultag)
+
+        let box2 =document.getElementById("second")
+        let container2 =document.getElementById("data22")
+        container2.remove();
+
+        let ultag2 = document.createElement("ul")
+        ultag2.id = "data22"
+        ultag2.classList.add("row")
+
+        c_data.second.forEach((el,index) => {
+          let litag2 = document.createElement("li")
+          litag2.id='cell'
+          litag2.classList.add('cell')
+          let atag2 = document.createElement("a")
+          atag2.onclick=() => recipe_key(el.food1,el.r_key)
+          let div12 = document.createElement("div")
+          div12.classList.add("img-box")
+          let imagetag2 = document.createElement("img")
+          imagetag2.src=el.image
+          imagetag2.style = ("height: 160px;")
+          let div22 = document.createElement("div")
+          div22.id="name"
+          div22.classList.add("prod-price")
+          div22.innerHTML = el.RCP_NM
+          let div32 = document.createElement("div")
+          div32.classList.add("recommand")
+          div32.innerHTML = "추천수 : "+el.recommand
+          div12.appendChild(imagetag2);
+          atag2.appendChild(div12);
+          litag2.appendChild(atag2);
+          litag2.appendChild(div22);
+          litag2.appendChild(div32);
+          ultag2.appendChild(litag2);
+          
+          
+        })
+        box2.appendChild(ultag2)
+
+
+      })
+      .catch((error) => {
+        console.log('실패:', error);
+    });
+  }
+
+
+</script>
+</html>

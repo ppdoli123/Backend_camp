@@ -1,0 +1,89 @@
+<!-- 검색 화면 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RDCM2F77Z4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RDCM2F77Z4');
+</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <style>
+      body{
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: 900;
+      }
+      #wrap{
+        width: auto;
+        margin: 0 auto;
+      }
+
+      .center {
+        text-align: center;
+        margin: 30px;
+      }
+      .divide{
+        margin: 40px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+      }
+      .place{
+        margin: 15px 300px;
+        display: block;
+        padding: 20px 20px;
+      }
+      .recipe{
+        margin: 15px 300px;
+        display: block;
+        padding: 20px 20px;
+      }
+
+
+    </style>
+  </head>
+
+  <body>
+    <div id="wrap">
+                <nav class="navbar navbar-expand-lg p-3"  style="background-color: #ed969677;">
+                    <span class="navbar-brand "><h2><b>우리집은 미슐랭 쓰리스타</b></h2> </span>
+                          <a class="nav-link active px-5" aria-current="page" href="mainplace"><h3>맛집</h3></a>
+                          <a class="nav-link px-5" href="mainrecipe"><h3>레시피 공유</h3></a>
+                          <a class="nav-link px-5 " href="profile"><h3>프로필</h3></a>
+                </nav>
+
+                          <nav class="navbar navbar-expand-lg p-3">
+                  <div>
+                    <form class="d-flex px-5" role="search">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" size="140px" style="height: 50px;">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                </nav>
+
+                <div class="center">
+                  <h3>인기 검색어</h3>
+                  <div class="divide">
+                    <div class="place">
+                      <h4>맛집</h4>
+                      <p>1. 햄버거</p>
+                    </div>
+                    <div class="recipe"><h4>레시피</h4></div>
+
+                  </div>
+                </div>
+
+
+              </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+
+
+</html>
